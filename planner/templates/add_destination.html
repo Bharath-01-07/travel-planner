@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Travel Planner</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+/* ======================
+   GLOBAL BACKGROUND
+====================== */
+
+body{
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #e0f2ff, #f8fbff);
+}
+
+/* ======================
+   HERO SECTION
+====================== */
+
+.hero{
+    height: 420px;
+    background:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url("https://images.unsplash.com/photo-1469854523086-cc02fe5d8800");
+    background-size: cover;
+    background-position: center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+}
+
+.hero h1{
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+
+.hero p{
+    font-size: 1.2rem;
+    opacity:0.9;
+}
+
+/* ======================
+   MAIN CARD (GLASS STYLE)
+====================== */
+
+.destination-box{
+    max-width: 1100px;
+    margin: -80px auto 50px;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(12px);
+    border-radius: 25px;
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+/* ======================
+   FORM TITLE
+====================== */
+
+.section-title{
+    text-align:center;
+    font-weight:700;
+    color:#1e293b;
+    margin-bottom:25px;
+}
+
+/* ======================
+   FORM DESIGN
+====================== */
+
+.travel-form{
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    border: 1px solid #e5e7eb;
+}
+
+/* Labels */
+.form-label{
+    font-weight: 600;
+    color:#334155;
+    margin-bottom: 8px;
+}
+
+/* Inputs */
+.travel-form input,
+.travel-form select,
+.travel-form textarea{
+    width:100%;
+    padding: 13px 15px;
+    border: 1.8px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 15px;
+    transition: 0.3s ease;
+    background:#f8fafc;
+}
+
+/* Focus */
+.travel-form input:focus,
+.travel-form select:focus,
+.travel-form textarea:focus{
+    border-color:#3b82f6;
+    box-shadow: 0 0 0 4px rgba(59,130,246,0.15);
+    outline:none;
+    background:white;
+}
+
+/* ======================
+   BUTTON
+====================== */
+
+.btn-save{
+    background: linear-gradient(135deg,#2563eb,#3b82f6);
+    color:white;
+    border:none;
+    padding:14px;
+    font-size:17px;
+    font-weight:600;
+    border-radius:12px;
+    width:100%;
+    transition:0.3s ease;
+}
+
+.btn-save:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 15px 25px rgba(37,99,235,0.3);
+}
+
+/* ======================
+   BACK BUTTON
+====================== */
+
+.back-btn{
+    position:absolute;
+    top:20px;
+    left:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="hero">
+
+    <a href="/" class="btn btn-light back-btn">
+        ← Dashboard
+    </a>
+
+    <div>
+        <h1>🌍 Plan Your Journey</h1>
+        <p>Save destinations and organize your perfect travel experience</p>
+    </div>
+
+</div>
+
+<div class="container">
+
+    <div class="destination-box">
+
+        <h2 class="section-title">✈ Add New Destination</h2>
+
+        <form method="POST" class="travel-form">
+
+            {% csrf_token %}
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">User</label>
+                    <input type="text" name="user" required placeholder="Enter User Name">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Trip Name</label>
+                    <input type="text" name="trip_name" required placeholder="e.g., Summer Vacation">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Source</label>
+                    <input type="text" name="source" required placeholder="Starting City">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Destination City</label>
+                    <input type="text" name="destination_city" required placeholder="Where to?">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Start Date</label>
+                    <input type="date" name="start_date" required>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">End Date</label>
+                    <input type="date" name="end_date" required>
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn-save mt-3">
+                🚀 Save Destination
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
