@@ -32,8 +32,6 @@ def add_destination(request):
         form = DestinationForm(request.POST)
         if form.is_valid():
             destination = form.save(commit=False)
-            if hasattr(destination, 'user'):
-                destination.user = request.user
             destination.save()
             return redirect('/')
     else:
@@ -49,8 +47,6 @@ def add_expense(request):
 
         if form.is_valid():
             expense = form.save(commit=False)
-            if hasattr(expense, 'user'):
-                expense.user = request.user
             expense.save()
             return redirect('/')
     else:
@@ -66,8 +62,6 @@ def add_schedule(request):
 
         if form.is_valid():
             schedule = form.save(commit=False)
-            if hasattr(schedule, 'user'):
-                schedule.user = request.user
             schedule.save()
             return redirect('/')
     else:
@@ -78,14 +72,9 @@ def add_schedule(request):
 
 def weather_view(request):
     weather_data = None
+
     if request.method == 'POST':
         city = request.POST.get('city')
         weather_data = get_weather(city)
 
-    return render(
-        request,
-        'weather.html',
-        {
-            'weather': weather_data
-        }
-    )
+    return render(request, 'weather.html', {'weather': weather_data})
